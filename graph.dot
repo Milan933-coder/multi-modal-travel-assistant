@@ -1,0 +1,34 @@
+---
+config:
+  flowchart:
+    curve: linear
+---
+graph TD;
+	__start__([<p>__start__</p>]):::first
+	parse_request(parse_request)
+	prepare_local_tool(prepare_local_tool)
+	prepare_web_tool(prepare_web_tool)
+	manual_tool_executor(manual_tool_executor)
+	empty_request(empty_request)
+	reuse_context(reuse_context)
+	fetch_weather(fetch_weather)
+	fetch_images(fetch_images)
+	finalize(finalize)
+	__end__([<p>__end__</p>]):::last
+	__start__ --> parse_request;
+	empty_request --> finalize;
+	fetch_images --> finalize;
+	fetch_weather --> finalize;
+	manual_tool_executor --> fetch_images;
+	manual_tool_executor --> fetch_weather;
+	parse_request -. &nbsp;empty&nbsp; .-> empty_request;
+	parse_request -. &nbsp;local_tool&nbsp; .-> prepare_local_tool;
+	parse_request -. &nbsp;web_tool&nbsp; .-> prepare_web_tool;
+	parse_request -.-> reuse_context;
+	prepare_local_tool --> manual_tool_executor;
+	prepare_web_tool --> manual_tool_executor;
+	reuse_context --> fetch_weather;
+	finalize --> __end__;
+	classDef default fill:#f2f0ff,line-height:1.2
+	classDef first fill-opacity:0
+	classDef last fill:#bfb6fc

@@ -1,0 +1,22 @@
+# Secrets & Environment
+.env
+
+# Vector Store & Local Databases
+.chroma/
+.chroma*/
+
+# Python Cache & Artifacts
+__pycache__/
+*.py[cod]
+*$py.class
+*.pytest_cache/
+.coverage
+htmlcov/
+
+# Virtual Environments
+.venv/
+venv/
+env/
+
+# Streamlit runtime
+.streamlit/
